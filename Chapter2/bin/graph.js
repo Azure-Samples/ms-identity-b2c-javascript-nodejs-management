@@ -1,3 +1,9 @@
+const MicrosoftGraph = require('@microsoft/microsoft-graph-client');
+const MyAuthenticationProvider = require('./authProvider');
+const fs = require('fs');
+
+require('isomorphic-fetch');
+
 let clientOptions = {
 	authProvider: new MyAuthenticationProvider(),
 };
@@ -7,7 +13,7 @@ const client = MicrosoftGraph.Client.initWithMiddleware(clientOptions);
 async function getUsers() {
     try {
         console.log('Graph API called at: ' + new Date().toString());
-        updateUI(await client.api("/users").get())
+        return await client.api("/users").get();
     } catch (error) {
         console.log(error);
         return error;
@@ -52,4 +58,12 @@ async function createUser(user) {
         console.log(error);
         return error;
     }
+}
+
+module.exports = {
+    getUsers: getUsers,
+    getUser: getUser,
+    updateUser: updateUser,
+    createUser: createUser,
+    deleteUser: deleteUser
 }

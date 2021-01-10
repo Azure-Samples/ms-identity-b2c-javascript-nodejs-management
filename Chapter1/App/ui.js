@@ -35,8 +35,42 @@ function updateUI(data) {
         contentItem.setAttribute("id", "list" + i)
         contentItem.setAttribute("role", "tabpanel")
         contentItem.setAttribute("aria-labelledby", "list" + i + "list")
-        contentItem.innerHTML = "<strong>Display Name:</strong> " + d.displayName + "<br> <strong>User Principal Name:</strong> " + d.userPrincipalName + "<br> <strong>Given Name:</strong> " + d.givenName + "<br> <strong>Surname:</strong> " + d.surname + "<br> <strong>ID:</strong> " + d.id;
+
+        contentItem.append(dataToTable(d));
+        
+        const editButton = document.createElement("button");
+        editButton.innerHTML = "Edit";
+        editButton.setAttribute("type", "button");
+        editButton.setAttribute("class", "btn btn-primary");
+
+        const deleteButton = document.createElement("button");
+        deleteButton.innerHTML = "Delete";
+        deleteButton.setAttribute("type", "button");
+        deleteButton.setAttribute("class", "btn btn-primary");
+
+        contentItem.append(editButton);
+        contentItem.append(deleteButton);
+
         tabContent.appendChild(contentItem);
     });
+}
 
+function dataToTable(data) {
+    var tableNode = document.createElement('table');
+    tableNode.setAttribute('id', 'userTable');
+    tableNode.setAttribute('class', 'table');
+
+    Object.entries(data).filter(datum => datum !== null).map((datum) => {
+        var rowNode = document.createElement('tr');
+        var dataNode1 = document.createElement('td');
+        var dataNode2 = document.createElement('td');
+        var valueNode1 = document.createTextNode(datum[0]);
+        var valueNode2 = document.createTextNode(datum[1]);
+        dataNode1.appendChild(valueNode1);
+        dataNode2.appendChild(valueNode2);
+        rowNode.appendChild(dataNode1);
+        rowNode.appendChild(dataNode2);
+        tableNode.appendChild(rowNode);
+    });
+    return tableNode;
 }

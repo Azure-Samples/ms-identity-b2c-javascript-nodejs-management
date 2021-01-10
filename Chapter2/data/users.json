@@ -1,0 +1,24 @@
+{
+    "accountEnabled": true,
+    "city": "Seattle",
+    "country": "United States",
+    "department": "Sales & Marketing",
+    "displayName": "Melissa Darrow",
+    "givenName": "Melissa",
+    "jobTitle": "Marketing Director",
+    "mailNickname": "MelissaD",
+    "passwordPolicies": "DisablePasswordExpiration",
+    "passwordProfile": {
+        "password": "6c21786a-c7dc-0cf0-b1da-ae89102aa114",
+        "forceChangePasswordNextSignIn": false
+    },
+    "officeLocation": "131/1105",
+    "postalCode": "98052",
+    "preferredLanguage": "en-US",
+    "state": "WA",
+    "streetAddress": "9256 Towne Center Dr., Suite 400",
+    "surname": "Darrow",
+    "mobilePhone": "+1 206 555 0110",
+    "usageLocation": "US",
+    "userPrincipalName": "MelissaD@msaljsb2c.onmicrosoft.com"
+}

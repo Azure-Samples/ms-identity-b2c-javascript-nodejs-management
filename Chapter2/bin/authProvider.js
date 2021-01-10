@@ -14,16 +14,12 @@ class MyAuthenticationProvider {
     
 	async getAccessToken() {
         return new Promise(async(resolve, reject) => {
-            // do a thing, possibly async, then…
-          
             const authResponse = await cca.acquireTokenByClientCredential(authConfig.tokenRequest)
 
-            if (authResponse.accessToken) {
+            if (authResponse.accessToken && authResponse.accessToken.length !== 0) {
               resolve(authResponse.accessToken);
-            }
-
-            else {
-              reject(Error("Error"));
+            } else {
+              reject(Error("Error: cannot obtain access token."));
             }
           });
     }
