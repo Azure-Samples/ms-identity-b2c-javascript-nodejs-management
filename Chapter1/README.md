@@ -47,6 +47,8 @@ Locate the root folder of the sample in a terminal. Then:
 
 ### Registration
 
+> :information_source: If you would like to use an existing B2C app registration that you use for signing-in users with user-flows (audience type 3), you can do so. However, you won't be able to grant delegated permissions via the **Permissions** blade on the App Registration portal. Thanks to dynamic consent, this won't be an issue, as you will already sign-in with an admin account that can consent to these permissions for herself. See "[configure the code to use your app registration](#configure-the-code-to-use-your-app-registration)" section below for other differences.
+
 ### Choose the Azure AD tenant where you want to create your applications
 
 As a first step you'll need to:
@@ -83,6 +85,8 @@ Open the project in your IDE (like Visual Studio or Visual Studio Code) to confi
 1. Find the key `Enter_the_Application_Id_Here` and replace the existing value with the application ID (clientId) of `b2c-management-spa` app copied from the Azure portal.
 1. Find the key `Enter_the_Tenant_Info_Here` and replace the existing value with your tenant ID copied form Azure portal.
 
+> :information_source: If you are using an existing B2C app registration that you use for signing-in users with user-flows, replace `Enter_the_Tenant_Info_Here` not with your tenant ID, but with "common".
+
 ## Running the sample
 
 Locate the root folder of the sample in a terminal. Then:
@@ -115,16 +119,16 @@ Were we successful in addressing your learning objective? Consider taking a mome
 In [authProvider.js](./App/AuthProvider.js), we initialize an **MSAL** client by passing a configuration object as shown below:
 
 ```javascript
-    const myMSALObj = new msal.PublicClientApplication(msalConfig);
+    const pca = new msal.PublicClientApplication(msalConfig);
 ```
 
 We then define a method for getting access tokens. To do so, we first attempt to acquire token *silently* from the browser cache, and fallback to an **interactive** method (here, popup) should that fails:
 
 ```javascript
     getTokenPopup(request) {
-        request.account = myMSALObj.getAccountByHomeId(accountId);
+        request.account = pca.getAccountByHomeId(accountId);
     
-        return myMSALObj.acquireTokenSilent(request)
+        return pca.acquireTokenSilent(request)
             .then((response) => {
                 // In case the response from B2C server has an empty accessToken field
                 // throw an error to initiate interactive token acquisition
@@ -138,7 +142,7 @@ We then define a method for getting access tokens. To do so, we first attempt to
                 console.log("silent token acquisition fails. acquiring token using popup");
                 if (error instanceof msal.InteractionRequiredAuthError) {
                     // fallback to interaction when silent call fails
-                    return myMSALObj.acquireTokenPopup(request)
+                    return pca.acquireTokenPopup(request)
                         .then(response => {
                             console.log(response);
                             return response;

@@ -67,7 +67,7 @@ const main = async() => {
               };
 
             if (yargs.argv['user']) {
-                let newUser = await graph.createUser(nuser);
+                let newUser = await graph.createUser(yargs.argv['user']);
                 console.log(newUser);
             } else {
                 console.log('Missing user parameter: --user <user_account>');
