@@ -15,53 +15,37 @@
 
 ## Overview
 
-This sample demonstrates a Vanilla JavaScript SPA calling the Microsoft Graph.
+This sample demonstrates a how to [manage your B2C users with Microsoft Graph](https://docs.microsoft.com/azure/active-directory-b2c/microsoft-graph-get-started) via a vanilla JavaScript single-page application (SPA) using [delegated permissions](https://docs.microsoft.com/azure/active-directory/develop/delegated-and-app-perms), with the help of [Microsoft Authentication Library of JavaScript](https://github.com/AzureAD/microsoft-authentication-library-for-js) (MSAL.js) for authentication and [Microsoft Graph JavaScript Client Library](https://github.com/microsoftgraph/msgraph-sdk-javascript) for querying [Microsoft Graph](https://docs.microsoft.com/graph/overview).
 
 ## Scenario
 
-1. The client Vanilla JavaScript SPA uses the Microsoft Authentication Library (MSAL) to sign-in and obtain a JWT access token from **Azure AD B2C**.
-2. The access token is used as a bearer token to authorize the user to call the Microsoft Graph protected **Azure AD B2C**.
+1. The client **JavaScript SPA** uses MSAL.js to sign-in and obtain a JWT access token from **Azure AD B2C**.
+2. The access token is used as a *bearer token* to authorize the user to call the **Microsoft Graph**.
 
-![Overview](./ReadmeFiles/topology.png)
+![Overview](./ReadmeFiles/ch1_topology.png)
 
 ## Contents
 
 | File/folder       | Description                                |
 |-------------------|--------------------------------------------|
-| `CHANGELOG.md`    | List of changes to the sample.             |
-| `CONTRIBUTING.md` | Guidelines for contributing to the sample. |
-| `LICENSE`         | The license for the sample.                |
+| `authConfig.js`   | Authentication parameters reside here.     |
+| `authProvider.js` | Main authentication logic resides here. |
+| `graph.js`        | Contains an implementation of MS Graph JavaScript SDK client |
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/en/download/) must be installed to run this sample.
-- A modern web browser. This sample uses **ES6** conventions and will not run on **Internet Explorer**.
-- [Visual Studio Code](https://code.visualstudio.com/download) is recommended for running and editing this sample.
-- An **Azure AD B2C** tenant. For more information see: [How to get an Azure AD B2C tenant](https://docs.microsoft.com/azure/active-directory-b2c/tutorial-create-tenant)
-- A user account **with admin privilages** in your **Azure AD B2C** tenant.
+- A user account with **admin privileges** in your **Azure AD B2C** tenant.
 
 ## Setup
 
-### Step 1: Clone or download this repository
-
-From your shell or command line:
+Locate the root folder of the sample in a terminal. Then:
 
 ```console
-    git clone https://github.com/Azure-Samples/https://github.com/Azure-Samples/ms-identity-b2c-javascript-nodejs-management.git
-```
-
-or download and extract the repository .zip file.
-
-> :warning: To avoid path length limitations on Windows, we recommend cloning into a directory near the root of your drive.
-
-### Step 2: Install project dependencies
-
-```console
-    cd ms-identity-javascript-c1s1
+    cd Chapter1
     npm install
 ```
 
-### Register the sample application(s) with your Azure Active Directory tenant
+### Registration
 
 ### Choose the Azure AD tenant where you want to create your applications
 
@@ -70,12 +54,12 @@ As a first step you'll need to:
 1. Sign in to the [Azure portal](https://portal.azure.com).
 1. If your account is present in more than one Azure AD B2C tenant, select your profile at the top right corner in the menu on top of the page, and then **switch directory** to change your portal session to the desired Azure AD B2C tenant.
 
-### Register the spa app (ms-identity-javascript-c1s1)
+### Register the app
 
 1. Navigate to the [Azure portal](https://portal.azure.com) and select the **Azure AD B2C** service.
 1. Select the **App Registrations** blade on the left, then select **New registration**.
 1. In the **Register an application page** that appears, enter your application's registration information:
-   - In the **Name** section, enter a meaningful application name that will be displayed to users of the app, for example `ms-identity-javascript-c1s1`.
+   - In the **Name** section, enter a meaningful application name that will be displayed to users of the app, for example `b2c-management-spa`.
    - Under **Supported account types**, select **Accounts in this organizational directory only**.
    - In the **Redirect URI (optional)** section, select **Single-page application** in the combo-box and enter the following redirect URI: `http://localhost:3000`.
 1. Select **Register** to create the application.
@@ -85,30 +69,36 @@ As a first step you'll need to:
    - Select the **Add a permission** button and then,
    - Ensure that the **Microsoft APIs** tab is selected.
    - In the *Commonly used Microsoft APIs* section, select **Microsoft Graph**
-   - In the **Delegated permissions** section, select the **User.Read.All** in the list. Use the search box if necessary.
+   - In the **Delegated permissions** section, select the **User.ReadWrite.All** in the list. Use the search box if necessary.
    - Select the **Add permissions** button at the bottom.
+   - Finally, grant **Admin consent** to these permissions.
 
-#### Configure the spa app (ms-identity-javascript-c1s1) to use your app registration
+#### Configure the code to use your app registration
 
 Open the project in your IDE (like Visual Studio or Visual Studio Code) to configure the code.
 
 > In the steps below, "ClientID" is the same as "Application ID" or "AppId".
 
 1. Open the `App\authConfig.js` file.
-1. Find the key `Enter_the_Application_Id_Here` and replace the existing value with the application ID (clientId) of `ms-identity-javascript-c1s1` app copied from the Azure portal.
-1. Find the key `Enter_the_Cloud_Instance_Id_Here/Enter_the_Tenant_Info_Here` and replace the existing value with "https://login.microsoftonline.com/"+$tenantName.
+1. Find the key `Enter_the_Application_Id_Here` and replace the existing value with the application ID (clientId) of `b2c-management-spa` app copied from the Azure portal.
+1. Find the key `Enter_the_Tenant_Info_Here` and replace the existing value with your tenant ID copied form Azure portal.
 
 ## Running the sample
 
+Locate the root folder of the sample in a terminal. Then:
+
 ```console
-    cd ms-identity-javascript-c1s1
+    cd Chapter1
     npm start
 ```
 
 ## Explore the sample
 
-> Explain how to explore the sample.
-> Insert a screenshot of the client application.
+1. Open your browser and navigate to `http://localhost:3000`.
+1. Click on the **sign-in** button on the top right corner.
+1. Click on the **Get Users** button retrieve the users in your tenant.
+
+![Screenshot](./ReadmeFiles/ch1_screenshot.png)
 
 > :information_source: Did the sample not work for you as expected? Then please reach out to us using the [GitHub Issues](../../../issues) page.
 
@@ -116,12 +106,95 @@ Open the project in your IDE (like Visual Studio or Visual Studio Code) to confi
 
 ## We'd love your feedback!
 
-Were we successful in addressing your learning objective? Consider taking a moment to [share your experience with us](Enter_Survey_Form_Link).
+Were we successful in addressing your learning objective? Consider taking a moment to [share your experience with us](https://forms.office.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR73pcsbpbxNJuZCMKN0lURpUOUlINE03TVo4TEM4MVRGUUQ2TlBRUUFBSCQlQCN0PWcu).
 
 ## About the code
 
-> - Describe where the code uses auth libraries, or calls the graph
-> - Describe specific aspects (e.g. caching, validation etc.)
+### Getting and passing access tokens
+
+In [authProvider.js](./App/AuthProvider.js), we initialize an **MSAL** client by passing a configuration object as shown below:
+
+```javascript
+    const myMSALObj = new msal.PublicClientApplication(msalConfig);
+```
+
+We then define a method for getting access tokens. To do so, we first attempt to acquire token *silently* from the browser cache, and fallback to an **interactive** method (here, popup) should that fails:
+
+```javascript
+    getTokenPopup(request) {
+        request.account = myMSALObj.getAccountByHomeId(accountId);
+    
+        return myMSALObj.acquireTokenSilent(request)
+            .then((response) => {
+                // In case the response from B2C server has an empty accessToken field
+                // throw an error to initiate interactive token acquisition
+                if (!response.accessToken || response.accessToken === "") {
+                    throw new msal.InteractionRequiredAuthError;
+                }
+                return response;
+            })
+            .catch(error => {
+                console.log(error);
+                console.log("silent token acquisition fails. acquiring token using popup");
+                if (error instanceof msal.InteractionRequiredAuthError) {
+                    // fallback to interaction when silent call fails
+                    return myMSALObj.acquireTokenPopup(request)
+                        .then(response => {
+                            console.log(response);
+                            return response;
+                        }).catch(error => {
+                            console.log(error);
+                        });
+                } else {
+                    console.log(error);   
+                }
+            });
+    }
+```
+
+Finally, we create **MyAuthenticationProvider** class that implements `AuthenticationProvider` interface (see for more: [Using Custom Authentication Provider](https://github.com/microsoftgraph/msgraph-sdk-javascript/blob/dev/docs/CustomAuthenticationProvider.md)). This class is used to instantiate a custom token middleware that is needed for enabling **Microsoft Graph JavaScript SDK** client object to communicate with the **Microsoft Graph API**.
+
+```javascript
+    class MyAuthenticationProvider {
+        async getAccessToken() {
+            return new Promise(async(resolve, reject) => {
+                const authResponse = await getTokenPopup(tokenRequest);
+    
+                if (authResponse.accessToken && authResponse.accessToken.length !== 0) {
+                  resolve(authResponse.accessToken);
+                } else {
+                  reject(Error("Error: cannot obtain access token."));
+                }
+              });
+        }
+    }
+```
+
+### Querying Microsoft Graph
+
+We first initialize the **Microsoft Graph JavaScript SDK** client:
+
+```javascript
+const clientOptions = {
+    authProvider: new MyAuthenticationProvider(),
+};
+
+const client = MicrosoftGraph.Client.initWithMiddleware(clientOptions);
+```
+
+After that, we can use for **CRUD** operations on Graph resources. For instance, to update a user account:
+
+```javascript
+    async function updateUser(id, prop) {
+        try {
+            console.log('Graph API called at: ' + new Date().toString());
+            return await client.api(`/users/${id}`).patch(prop);
+        } catch (error) {
+            console.log(error);
+            return error;
+        }
+    }
+```
 
 ## More information
 
@@ -143,7 +216,7 @@ For more information about how OAuth 2.0 protocols work in this scenario and oth
 
 Use [Stack Overflow](http://stackoverflow.com/questions/tagged/msal) to get support from the community.
 Ask your questions on Stack Overflow first and browse existing issues to see if someone has asked your question before.
-Make sure that your questions or comments are tagged with [`azure-active-directory` `azure-ad-b2c` `ms-identity` `adal` `msal`].
+Make sure that your questions or comments are tagged with [`azure-active-directory` `azure-ad-b2c` `ms-identity` `msal`].
 
 If you find a bug in the sample, raise the issue on [GitHub Issues](../../../issues).
 

@@ -1,24 +1,50 @@
-{
-    "accountEnabled": true,
-    "city": "Seattle",
-    "country": "United States",
-    "department": "Sales & Marketing",
-    "displayName": "Melissa Darrow",
-    "givenName": "Melissa",
-    "jobTitle": "Marketing Director",
-    "mailNickname": "MelissaD",
-    "passwordPolicies": "DisablePasswordExpiration",
-    "passwordProfile": {
-        "password": "6c21786a-c7dc-0cf0-b1da-ae89102aa114",
-        "forceChangePasswordNextSignIn": false
+[
+    {
+        "accountEnabled": true,
+        "city": "Seattle",
+        "country": "United States",
+        "department": "Sales & Marketing",
+        "displayName": "Melissa Darrow",
+        "givenName": "Melissa",
+        "jobTitle": "Marketing Director",
+        "mailNickname": "MelissaD",
+        "passwordPolicies": "DisablePasswordExpiration",
+        "passwordProfile": {
+            "password": "6c21786a-c7dc-0cf0-b1da-ae89102aa114",
+            "forceChangePasswordNextSignIn": false
+        },
+        "officeLocation": "131/1105",
+        "postalCode": "98052",
+        "preferredLanguage": "en-US",
+        "state": "WA",
+        "streetAddress": "9256 Towne Center Dr., Suite 400",
+        "surname": "Darrow",
+        "mobilePhone": "+1 206 555 0110",
+        "usageLocation": "US",
+        "userPrincipalName": "MelissaD@msaljsb2c.onmicrosoft.com"
     },
-    "officeLocation": "131/1105",
-    "postalCode": "98052",
-    "preferredLanguage": "en-US",
-    "state": "WA",
-    "streetAddress": "9256 Towne Center Dr., Suite 400",
-    "surname": "Darrow",
-    "mobilePhone": "+1 206 555 0110",
-    "usageLocation": "US",
-    "userPrincipalName": "MelissaD@msaljsb2c.onmicrosoft.com"
-}
+    {
+        "accountEnabled": true,
+        "city": "Redmond",
+        "country": "United States",
+        "department": "Legal",
+        "displayName": "Alessa Furrow",
+        "givenName": "Alessa",
+        "jobTitle": "Marketing Director",
+        "mailNickname": "AlessaF",
+        "passwordPolicies": "DisablePasswordExpiration",
+        "passwordProfile": {
+            "password": "9u21786b-c7dc-0cf0-c2xy-ae89102aa112",
+            "forceChangePasswordNextSignIn": false
+        },
+        "officeLocation": "141/1106",
+        "postalCode": "68053",
+        "preferredLanguage": "en-US",
+        "state": "WA",
+        "streetAddress": "8856 Huron Center Dr., Suite 300",
+        "surname": "Furrow",
+        "mobilePhone": "+1 306 555 5510",
+        "usageLocation": "US",
+        "userPrincipalName": "AlessaF@msaljsb2c.onmicrosoft.com"
+    }
+]

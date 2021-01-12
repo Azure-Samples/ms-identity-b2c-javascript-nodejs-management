@@ -42,11 +42,24 @@ function updateUI(data) {
         editButton.innerHTML = "Edit";
         editButton.setAttribute("type", "button");
         editButton.setAttribute("class", "btn btn-primary");
+        editButton.addEventListener('click', async() => {
+            await updateUser(d.id, {
+                businessPhones: [
+                  '+1 425 555 0109'
+                ],
+                officeLocation: 'CA'
+              });
+            await getUsers();
+        });
 
         const deleteButton = document.createElement("button");
         deleteButton.innerHTML = "Delete";
         deleteButton.setAttribute("type", "button");
         deleteButton.setAttribute("class", "btn btn-primary");
+        deleteButton.addEventListener('click', async() => {
+            await deleteUser(d.id);
+            await getUsers();
+        });
 
         contentItem.append(editButton);
         contentItem.append(deleteButton);
@@ -56,16 +69,16 @@ function updateUI(data) {
 }
 
 function dataToTable(data) {
-    var tableNode = document.createElement('table');
+    const tableNode = document.createElement('table');
     tableNode.setAttribute('id', 'userTable');
     tableNode.setAttribute('class', 'table');
 
     Object.entries(data).filter(datum => datum !== null).map((datum) => {
-        var rowNode = document.createElement('tr');
-        var dataNode1 = document.createElement('td');
-        var dataNode2 = document.createElement('td');
-        var valueNode1 = document.createTextNode(datum[0]);
-        var valueNode2 = document.createTextNode(datum[1]);
+        const rowNode = document.createElement('tr');
+        const dataNode1 = document.createElement('td');
+        const dataNode2 = document.createElement('td');
+        const valueNode1 = document.createTextNode(datum[0]);
+        const valueNode2 = document.createTextNode(datum[1]);
         dataNode1.appendChild(valueNode1);
         dataNode2.appendChild(valueNode2);
         rowNode.appendChild(dataNode1);

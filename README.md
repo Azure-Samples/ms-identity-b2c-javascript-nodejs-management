@@ -18,15 +18,23 @@ description: "This sample demonstrates how to manage Azure AD B2C users via Micr
 
 ## Overview
 
-This sample demonstrates a Vanilla JavaScript SPA calling the Microsoft Graph.
+This chapterwise tutorial demonstrates the use of the [Microsoft Graph API](https://docs.microsoft.com/graph/overview) to perform user account management operations  such as **create**, **read**, **update** and **delete** within an [Azure AD B2C](https://docs.microsoft.com/azure/active-directory-b2c/overview) directory. The code samples in this tutorial back the [Manage Azure AD B2C user accounts with Microsoft Graph](https://docs.microsoft.com/azure/active-directory-b2c/manage-user-accounts-graph-api) article on [docs.microsoft.com](https://docs.microsoft.com/).
+
+There are two modes of communication you can use when working with the **Microsoft Graph API** to manage resources in your **Azure AD B2C** tenant:
+
+- **Interactive**: Appropriate for run-once tasks, you use an administrator account in the B2C tenant to perform the management tasks. This mode requires an **administrator** to sign-in using their credentials before calling the **Microsoft Graph API**. This is demonstrated in [Chapter 1](./Chapter1).
+
+- **Automated**: For scheduled or continuously run tasks, this method uses a service account that you configure with the permissions required to perform management tasks. You create the **service account** in Azure AD B2C by registering an application that your applications and scripts use for authenticating using its Application (Client) ID and the [OAuth 2.0 client credentials grant](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow). In this case, the application acts as itself to call the **Microsoft Graph API**, not the administrator user as in the previously described interactive method. This is demonstrated in [Chapter 2](./Chapter2).
+
+For more information, see: [Manage Azure AD B2C with Microsoft Graph](https://docs.microsoft.com/azure/active-directory-b2c/microsoft-graph-get-started).
 
 ## Contents
 
 | File/folder       | Description                                |
 |-------------------|--------------------------------------------|
-| `CHANGELOG.md`    | List of changes to the sample.             |
-| `CONTRIBUTING.md` | Guidelines for contributing to the sample. |
-| `LICENSE`         | The license for the sample.                |
+| `Chapter1`        | A JavaScript single-page application using delegated permissions. |
+| `Chapter2`        | A Node.js console application using application permissions. |
+| `ReadmeFiles`     | Contains diagrams and screenshots. |
 
 ## Prerequisites
 
@@ -36,26 +44,19 @@ This sample demonstrates a Vanilla JavaScript SPA calling the Microsoft Graph.
 - An **Azure AD B2C** tenant. For more information see: [How to get an Azure AD B2C tenant](https://docs.microsoft.com/azure/active-directory-b2c/tutorial-create-tenant)
 - A user account in your **Azure AD B2C** tenant.
 
-## Setup
+Refer to each chapter for additional prerequisites.
 
-### Step 1: Clone or download this repository
+## Setup
 
 From your shell or command line:
 
 ```console
-    git clone https://github.com/Azure-Samples/https://github.com/Azure-Samples/ms-identity-b2c-javascript-nodejs-management.git
+    git clone https://github.com/Azure-Samples/ms-identity-b2c-javascript-nodejs-management.git
 ```
 
-or download and extract the repository .zip file.
+## Next step
 
-> :warning: To avoid path length limitations on Windows, we recommend cloning into a directory near the root of your drive.
-
-### Step 2: Install project dependencies
-
-```console
-    cd ms-identity-javascript-c1s1
-    npm install
-```
+Continue with [Chapter 1](./Chapter1).
 
 ## More information
 
@@ -77,9 +78,9 @@ For more information about how OAuth 2.0 protocols work in this scenario and oth
 
 Use [Stack Overflow](http://stackoverflow.com/questions/tagged/msal) to get support from the community.
 Ask your questions on Stack Overflow first and browse existing issues to see if someone has asked your question before.
-Make sure that your questions or comments are tagged with [`azure-active-directory` `azure-ad-b2c` `ms-identity` `adal` `msal`].
+Make sure that your questions or comments are tagged with [`azure-active-directory` `azure-ad-b2c` `ms-identity` `msal`].
 
-If you find a bug in the sample, raise the issue on [GitHub Issues](../../../issues).
+If you find a bug in the sample, raise the issue on [GitHub Issues](../issues).
 
 To provide feedback on or suggest features for Azure Active Directory, visit [User Voice page](https://feedback.azure.com/forums/169401-azure-active-directory).
 

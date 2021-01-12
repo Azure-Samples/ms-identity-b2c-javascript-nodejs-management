@@ -1,4 +1,4 @@
-let clientOptions = {
+const clientOptions = {
 	authProvider: new MyAuthenticationProvider(),
 };
 
@@ -7,17 +7,7 @@ const client = MicrosoftGraph.Client.initWithMiddleware(clientOptions);
 async function getUsers() {
     try {
         console.log('Graph API called at: ' + new Date().toString());
-        updateUI(await client.api("/users").get())
-    } catch (error) {
-        console.log(error);
-        return error;
-    }
-}
-
-async function getUser(id) {
-    try {
-        console.log('Graph API called at: ' + new Date().toString());
-        return await client.api(`/users/${id}`).get();
+        updateUI(await client.api('/users').get());
     } catch (error) {
         console.log(error);
         return error;
@@ -45,9 +35,9 @@ async function updateUser(id, prop) {
 }
 
 async function createUser(user) {
-      try {
+    try {
         console.log('Graph API called at: ' + new Date().toString());
-        return await client.api("/users").post(user);
+        return await client.api('/users').post(user);
     } catch (error) {
         console.log(error);
         return error;

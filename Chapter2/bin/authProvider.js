@@ -15,11 +15,11 @@ class MyAuthenticationProvider {
 	async getAccessToken() {
         return new Promise(async(resolve, reject) => {
             const authResponse = await cca.acquireTokenByClientCredential(authConfig.tokenRequest)
-
+            
             if (authResponse.accessToken && authResponse.accessToken.length !== 0) {
               resolve(authResponse.accessToken);
             } else {
-              reject(Error("Error: cannot obtain access token."));
+              reject(Error('Error: cannot obtain access token.'));
             }
           });
     }

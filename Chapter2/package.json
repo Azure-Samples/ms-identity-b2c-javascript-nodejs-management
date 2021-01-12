@@ -4,23 +4,16 @@
   "description": "Command line app showing how to use client credential grant to acquire tokens from Azure AD",
   "main": "bin/index.js",
   "private": true,
-  "scripts": {
-    "start": "node ./bin/index.js"
-  },
   "bin": {
-    "aad-b2c-management": "./bin/index.js"
+    "b2c-management-cli": "bin/index.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@azure/msal-node": "^1.0.0-beta.2",
+    "@azure/msal-node": "^1.0.0-beta.3",
     "@microsoft/microsoft-graph-client": "^2.2.1",
-    "chalk": "^4.1.0",
     "dotenv": "^8.2.0",
     "isomorphic-fetch": "^3.0.0",
     "yargs": "^16.2.0"
-  },
-  "devDependencies": {
-    "@microsoft/microsoft-graph-types": "^1.28.0"
   }
 }

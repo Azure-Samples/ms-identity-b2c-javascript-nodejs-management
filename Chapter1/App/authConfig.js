@@ -5,9 +5,9 @@
  */
 const msalConfig = {
     auth: {
-        clientId: "f025df6a-22cd-4e16-93c9-093ae32ba57b", // This is the ONLY mandatory field that you need to supply.
-        authority: "https://login.microsoftonline.com/35d7f68e-13d3-4472-9258-5614389dc6bc",
-        redirectUri: "http://localhost:3000", // You must register this URI on Azure Portal/App Registration. Defaults to window.location.href
+        clientId: "Enter_the_Client_Id_Here", // This is the ONLY mandatory field that you need to supply.
+        authority: "https://login.microsoftonline.com/Enter_the_Tenant_Id_Here",
+        redirectUri: "http://localhost:3000", // You must register this URI on Azure Portal/App Registration.
       },
     cache: {
         cacheLocation: "localStorage", // This configures where your cache will be stored
@@ -30,11 +30,10 @@ const loginRequest = {
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/resources-and-scopes.md
  */
 const tokenRequest = {
-    scopes: [ "User.ReadWrite.All" ],
-    forceRefresh: false // Set this to "true" to skip a cached token and go to the server to get a new token
+    scopes: [ "User.ReadWrite.All" ]
 };
 
 // Add here the endpoints for MS Graph API services you would like to use.
 const graphConfig = {
-    graphUsersEndpoint: "https://graph.microsoft.com/v1.0/users",
+    graphUsersEndpoint: "https://graph.microsoft.com/v1.0/users"
 };
