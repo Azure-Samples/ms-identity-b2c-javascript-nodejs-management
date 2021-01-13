@@ -20,7 +20,7 @@ This sample demonstrates a how to [manage your B2C users with Microsoft Graph](h
 ## Scenario
 
 1. The client **JavaScript SPA** uses MSAL.js to sign-in and obtain a JWT access token from **Azure AD B2C**.
-2. The access token is used as a *bearer token* to authorize the user to call the **Microsoft Graph**.
+2. The access token is used as a *bearer token* to authorize the user to call **Microsoft Graph**.
 
 ![Overview](./ReadmeFiles/ch1_topology.png)
 

@@ -18,7 +18,7 @@ description: "This sample demonstrates how to manage Azure AD B2C users via Micr
 
 ## Overview
 
-This chapterwise tutorial demonstrates the use of the [Microsoft Graph API](https://docs.microsoft.com/graph/overview) to perform user account management operations  such as **create**, **read**, **update** and **delete** within an [Azure AD B2C](https://docs.microsoft.com/azure/active-directory-b2c/overview) directory. The code samples in this tutorial back the [Manage Azure AD B2C user accounts with Microsoft Graph](https://docs.microsoft.com/azure/active-directory-b2c/manage-user-accounts-graph-api) article on [docs.microsoft.com](https://docs.microsoft.com/).
+This chapterwise tutorial demonstrates how to use the [Microsoft Graph API](https://docs.microsoft.com/graph/overview) to perform user account management operations  such as **create**, **read**, **update** and **delete** within an [Azure AD B2C](https://docs.microsoft.com/azure/active-directory-b2c/overview) directory. The code samples in this tutorial back the [Manage Azure AD B2C user accounts with Microsoft Graph](https://docs.microsoft.com/azure/active-directory-b2c/manage-user-accounts-graph-api) article on [docs.microsoft.com](https://docs.microsoft.com/).
 
 There are two modes of communication you can use when working with the **Microsoft Graph API** to manage resources in your **Azure AD B2C** tenant:
 
@@ -42,7 +42,8 @@ For more information, see: [Manage Azure AD B2C with Microsoft Graph](https://do
 - A modern web browser. This sample uses **ES6** conventions and will not run on **Internet Explorer**.
 - [Visual Studio Code](https://code.visualstudio.com/download) is recommended for running and editing this sample.
 - An **Azure AD B2C** tenant. For more information see: [How to get an Azure AD B2C tenant](https://docs.microsoft.com/azure/active-directory-b2c/tutorial-create-tenant)
-- A user account in your **Azure AD B2C** tenant.
+
+We recommend familiarity with the following document: [Working with MSAL.js and Azure AD B2C](https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/working-with-b2c.md)
 
 Refer to each chapter for additional prerequisites.
 
