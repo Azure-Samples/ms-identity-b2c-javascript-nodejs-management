@@ -1,76 +1,103 @@
 // Select DOM elements to work with
-const welcomeDiv = document.getElementById("WelcomeMessage");
-const signInButton = document.getElementById("SignIn");
-const cardDiv = document.getElementById("card-div");
+const welcomeDiv = document.getElementById('WelcomeMessage');
+const cardDiv = document.getElementById('card-div');
+const formDiv = document.getElementById('form-div');
+
+const signInButton = document.getElementById('signIn');
+const getUsersButton = document.getElementById('getUsers');
+const addUsersButton = document.getElementById('addUsers');
+const submitButton = document.getElementById('submitButton');
+
+const tabContent = document.getElementById('nav-tabContent');
+const tabList = document.getElementById('list-tab');
+
+getUsersButton.addEventListener('click', async() => {
+    updateUI(await getUsers());
+});
+
+addUsersButton.addEventListener('click', async() => {
+    tabContent.style.display = 'none';
+    tabList.style.display = 'none';
+    formDiv.style.display = 'initial'
+});
+
+submitButton.addEventListener('click', async() => {
+    formDiv.style.display = 'none';
+    
+    /**
+     * Following are the mandatory fields when creating a new user.
+     * For more information, visit: https://docs.microsoft.com/graph/api/user-post-users
+     */
+    const newUser = {
+        accountEnabled: true,
+        displayName: document.getElementById('displayName').value,
+        userPrincipalName: document.getElementById('userPrincipalName').value,
+        mailNickname: document.getElementById('userPrincipalName').value.split('@')[0],
+        passwordProfile: {
+            password: document.getElementById('password').value,
+            forceChangePasswordNextSignIn: true
+        },
+    };
+
+    await createUser(newUser);
+});
 
 function showWelcomeMessage(username) {
     // Reconfiguring DOM elements
     cardDiv.style.display = 'initial';
     welcomeDiv.innerHTML = `Welcome ${username}`;
-    signInButton.setAttribute("onclick", "signOut();");
-    signInButton.setAttribute('class', "btn btn-success")
-    signInButton.innerHTML = "Sign Out";
+    signInButton.setAttribute('onclick', 'signOut();');
+    signInButton.setAttribute('class', 'btn btn-success')
+    signInButton.innerHTML = 'Sign Out';
 }
 
 function updateUI(data) {
     console.log('Graph API responded at: ' + new Date().toString());
 
-    const tabContent = document.getElementById("nav-tabContent");
-    const tabList = document.getElementById("list-tab");
-    tabList.innerHTML = ''; // clear tabList at each readMail call
+    tabContent.style.display = 'initial';
+    tabList.style.display = 'initial';
+    tabList.innerHTML = ''; // clear tabList at each call
+
 
     data.value.map((d, i) => {
-        const listItem = document.createElement("a");
-        listItem.setAttribute("class", "list-group-item list-group-item-action")
-        listItem.setAttribute("id", "list" + i + "list")
-        listItem.setAttribute("data-toggle", "list")
-        listItem.setAttribute("href", "#list" + i)
-        listItem.setAttribute("role", "tab")
-        listItem.setAttribute("aria-controls", i)
+        const listItem = document.createElement('a');
+        listItem.setAttribute('class', 'list-group-item list-group-item-action')
+        listItem.setAttribute('id', 'list' + (i+1) + 'list')
+        listItem.setAttribute('data-toggle', 'list')
+        listItem.setAttribute('href', '#list' + (i+1))
+        listItem.setAttribute('role', 'tab')
+        listItem.setAttribute('aria-controls', (i+1))
         listItem.innerHTML = d.displayName;
         tabList.appendChild(listItem)
 
-        const contentItem = document.createElement("div");
-        contentItem.setAttribute("class", "tab-pane fade")
-        contentItem.setAttribute("id", "list" + i)
-        contentItem.setAttribute("role", "tabpanel")
-        contentItem.setAttribute("aria-labelledby", "list" + i + "list")
+        const contentItem = document.createElement('div');
+        contentItem.setAttribute('class', 'tab-pane fade')
+        contentItem.setAttribute('id', 'list' + (i+1))
+        contentItem.setAttribute('role', 'tabpanel')
+        contentItem.setAttribute('aria-labelledby', 'list' + (i+1) + 'list')
 
-        contentItem.append(dataToTable(d));
-        
-        const editButton = document.createElement("button");
-        editButton.innerHTML = "Edit";
-        editButton.setAttribute("type", "button");
-        editButton.setAttribute("class", "btn btn-primary");
-        editButton.addEventListener('click', async() => {
-            await updateUser(d.id, {
-                businessPhones: [
-                  '+1 425 555 0109'
-                ],
-                officeLocation: 'CA'
-              });
-            await getUsers();
-        });
+        contentItem.append(dataToTable(d, i));
 
-        const deleteButton = document.createElement("button");
-        deleteButton.innerHTML = "Delete";
-        deleteButton.setAttribute("type", "button");
-        deleteButton.setAttribute("class", "btn btn-primary");
+        const deleteButton = document.createElement('button');
+        deleteButton.innerHTML = 'Delete';
+        deleteButton.setAttribute('type', 'button');
+        deleteButton.setAttribute('id', 'deleteButton');
+        deleteButton.setAttribute('class', 'btn btn-primary');
+
         deleteButton.addEventListener('click', async() => {
+            document.getElementById('userTable' + (i+1)).remove();
+            document.getElementById('list' + (i+1) + 'list').remove();
             await deleteUser(d.id);
-            await getUsers();
         });
 
-        contentItem.append(editButton);
         contentItem.append(deleteButton);
-
         tabContent.appendChild(contentItem);
     });
 }
 
-function dataToTable(data) {
+function dataToTable(data, i) {
     const tableNode = document.createElement('table');
-    tableNode.setAttribute('id', 'userTable');
+    tableNode.setAttribute('id', 'userTable' + (i+1));
     tableNode.setAttribute('class', 'table');
 
     Object.entries(data).filter(datum => datum !== null).map((datum) => {

@@ -106,7 +106,16 @@ This will install the CLI application globally so that it can be called from any
 
 ## Explore the sample
 
-Available operations for the application is shown below:
+Available operations for the application are as follows:
+
+- `getUsers`: makes a GET for all user accounts in the tenant.
+- `getUser`: makes a GET request for a particular user account in the tenant by ID.
+- `updateUser`: makes a PATCH request to update user account properties.
+- `deleteUser`: makes a DELETE request to delete the user account by ID.
+- `createUser`: makes a POST request to create a user account. Request payload must conform to guidelines.
+- `createUserFromFile`: reads from a JSON file and makes a POST request for each user account found. Request payload must conform to guidelines.
+
+See the table below for required parameters:
 
 ```console
     Usage: --op <operation_name> --id <user_id> --user <user_account> --prop <user_account_property> --path <JSON_path>
@@ -119,10 +128,10 @@ Available operations for the application is shown below:
       --path, --path        JSON file path                                   [string]
 ```
 
-For instance, if you would like to get all the users in your tenant, type:
+For instance, if you would like to get a particular user in your tenant, type:
 
 ```console
-    b2c-management-cli --op getUsers
+    b2c-management-cli --op getUser --id <ID_OF_THE_USER>
 ```
 
 > :information_source: Did the sample not work for you as expected? Then please reach out to us using the [GitHub Issues](../../../issues) page.
