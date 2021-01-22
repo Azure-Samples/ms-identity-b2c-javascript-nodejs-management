@@ -20,31 +20,43 @@ const main = async() => {
     
     switch (yargs.argv['op']) {
         case 'getUsers':
-            let users = await graph.getUsers();
-            console.log(users);
+            try {
+                let users = await graph.getUsers();
+                console.log(users);   
+            } catch (error) {
+                console.log(error);
+            }
             break;
         case 'getUser':
             if (yargs.argv['id']) {
-                let user = await graph.getUser(yargs.argv['id']);
-                console.log(user);
+                try {
+                    let user = await graph.getUser(yargs.argv['id']);
+                    console.log(user);   
+                } catch (error) {
+                    console.log(error);
+                }
             } else {
                 console.log('Missing id parameter: --id <user_id>');
             }
             break;
         case 'updateUser':
 
-            // sample query
-            yargs.argv['prop'] = {
-                businessPhones: [
-                  '+1 425 555 0109'
-                ],
-                officeLocation: 'US'
-              };
+            // example query
+            // const userToUpdate = {
+            //     businessPhones: [
+            //       '+1 425 555 0109'
+            //     ],
+            //     officeLocation: 'US'
+            //   };
 
             if (yargs.argv['id']) {
                 if (yargs.argv['prop']) {
-                    let updatedUser = await graph.updateUser(yargs.argv['id'], yargs.argv['prop']);
-                    console.log(updatedUser);
+                    try {
+                        let updatedUser = await graph.updateUser(yargs.argv['id'], yargs.argv['prop']);
+                        console.log(updatedUser);   
+                    } catch (error) {
+                        console.log(error);
+                    }
                 } else {
                     console.log('Missing prop parameter: --prop <user_account_property>');
                 }
@@ -54,37 +66,49 @@ const main = async() => {
             break;
         case 'createUser':
 
-            // sample query
-            yargs.argv['user'] = {
-                accountEnabled: true,
-                displayName: 'Adele Vance',
-                mailNickname: 'AdeleV',
-                userPrincipalName: 'AdeleV@msaljsb2c.onmicrosoft.com',
-                'passwordProfile' : {
-                  forceChangePasswordNextSignIn: true,
-                  password: 'xWwvJ]6NMw+bWH-d'
-                }
-              };
+            // example query
+            // const userToCreate = {
+            //     accountEnabled: true,
+            //     displayName: 'Adele Vance',
+            //     userPrincipalName: 'AdeleV@msaljsb2c.onmicrosoft.com',
+            //     mailNickname: 'AdeleV',
+            //     'passwordProfile' : {
+            //       forceChangePasswordNextSignIn: true,
+            //       password: 'xWwvJ]6NMw+bWH-d'
+            //     }
+            //   };
 
             if (yargs.argv['user']) {
-                let newUser = await graph.createUser(yargs.argv['user']);
-                console.log(newUser);
+                try {
+                    let newUser = await graph.createUser(yargs.argv['user']);
+                    console.log(newUser);   
+                } catch (error) {
+                    console.log(error);
+                }
             } else {
                 console.log('Missing user parameter: --user <user_account>');
             }
             break;
         case 'createUsersFromFile':
             if (yargs.argv['path']) {
-                await graph.createUsersFromFile(yargs.argv['path']);
-                console.log('User(s) created.');
+                try {
+                    await graph.createUsersFromFile(yargs.argv['path']);
+                    console.log('User(s) created.');   
+                } catch (error) {
+                    console.log(error);
+                }
             } else {
                 console.log('Missing user parameter: --user <user_account>');
             }
             break;
         case 'deleteUser':
             if (yargs.argv['id']) {
-                await graph.deleteUser(yargs.argv['id']);
-                console.log('User deleted.');
+                try {
+                    await graph.deleteUser(yargs.argv['id']);
+                    console.log('User deleted.');   
+                } catch (error) {
+                    console.log(error);
+                }
             } else {
                 console.log('Missing id parameter: --id <user_id>');
             }

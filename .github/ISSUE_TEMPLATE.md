@@ -21,7 +21,7 @@ IF SUFFICIENT INFORMATION IS NOT PROVIDED VIA THE FOLLOWING TEMPLATE THE ISSUE M
 ### Expected/desired behavior
 >
 
-### Browser and Version?
+### Browser/OS and version?
 >
 
 ### Versions

@@ -15,7 +15,7 @@
 
 ## Overview
 
-This sample demonstrates a how to [manage your B2C users with Microsoft Graph](https://docs.microsoft.com/azure/active-directory-b2c/microsoft-graph-get-started) via a vanilla JavaScript single-page application (SPA) using [delegated permissions](https://docs.microsoft.com/azure/active-directory/develop/delegated-and-app-perms), with the help of [Microsoft Authentication Library of JavaScript](https://github.com/AzureAD/microsoft-authentication-library-for-js) (MSAL.js) for authentication and [Microsoft Graph JavaScript Client Library](https://github.com/microsoftgraph/msgraph-sdk-javascript) for querying [Microsoft Graph](https://docs.microsoft.com/graph/overview).
+This sample demonstrates a how to [manage your B2C users with Microsoft Graph](https://docs.microsoft.com/azure/active-directory-b2c/microsoft-graph-get-started) via a vanilla JavaScript single-page application (SPA) using [delegated permissions](https://docs.microsoft.com/azure/active-directory/develop/delegated-and-app-perms), with the help of [Microsoft Authentication Library of JavaScript](https://github.com/AzureAD/microsoft-authentication-library-for-js) (MSAL.js) for authentication and [Microsoft Graph JavaScript SDK](https://github.com/microsoftgraph/msgraph-sdk-javascript) for querying [Microsoft Graph](https://docs.microsoft.com/graph/overview).
 
 ## Scenario
 
@@ -26,11 +26,11 @@ This sample demonstrates a how to [manage your B2C users with Microsoft Graph](h
 
 ## Contents
 
-| File/folder       | Description                                |
-|-------------------|--------------------------------------------|
-| `authConfig.js`   | Authentication parameters reside here.     |
-| `authProvider.js` | Main authentication logic resides here. |
-| `graph.js`        | Contains an implementation of MS Graph JavaScript SDK client |
+| File/folder       | Description                                                   |
+|-------------------|---------------------------------------------------------------|
+| `authConfig.js`   | Authentication parameters reside here.                        |
+| `authProvider.js` | Main authentication logic resides here.                       |
+| `graph.js`        | Contains an implementation of MS Graph JavaScript SDK client. |
 
 ## Prerequisites
 
@@ -47,7 +47,7 @@ Locate the root folder of the sample in a terminal. Then:
 
 ### Registration
 
-> :information_source: If you would like to use an existing B2C app registration that you use for signing-in users with user-flows (audience type 3), you can do so. However, you won't be able to grant delegated permissions via the **Permissions** blade on the App Registration portal. Thanks to dynamic consent, this won't be an issue, as you will already sign-in with an admin account that can consent to these permissions for herself. See "[configure the code to use your app registration](#configure-the-code-to-use-your-app-registration)" section below for other differences.
+> :information_source: If you would like to use an existing B2C app registration that you use for signing-in users with user-flows (audience type 3), you can do so. However, you won't be able to grant delegated permissions via the **Permissions** blade on the App Registration portal. Still, because of [dynamic consent](https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent), this won't be an issue, as you will already sign-in with an admin account that can consent to these permissions for herself. See "[configure the code to use your app registration](#configure-the-code-to-use-your-app-registration)" section below for other differences.
 
 ### Choose the Azure AD tenant where you want to create your applications
 
@@ -99,7 +99,7 @@ Locate the root folder of the sample in a terminal. Then:
 ## Explore the sample
 
 1. Open your browser and navigate to `http://localhost:3000`.
-1. Click on the **sign-in** button on the top right corner.
+1. Click on the **sign-in** button on the top right corner (make sure to sign-in with an administrator account).
 1. Click on the **Get Users** button retrieve the users in your tenant.
 
 ![Screenshot](./ReadmeFiles/ch1_screenshot.png)
@@ -162,6 +162,8 @@ Finally, we create **MyAuthenticationProvider** class that implements `Authentic
     class MyAuthenticationProvider {
         async getAccessToken() {
             return new Promise(async(resolve, reject) => {
+
+                // here we get an access token for MS Graph
                 const authResponse = await getTokenPopup(tokenRequest);
     
                 if (authResponse.accessToken && authResponse.accessToken.length !== 0) {
@@ -169,7 +171,7 @@ Finally, we create **MyAuthenticationProvider** class that implements `Authentic
                 } else {
                   reject(Error("Error: cannot obtain access token."));
                 }
-              });
+            });
         }
     }
 ```
@@ -186,7 +188,7 @@ const clientOptions = {
 const client = MicrosoftGraph.Client.initWithMiddleware(clientOptions);
 ```
 
-After that, we can use for **CRUD** operations on Graph resources. For instance, to update a user account:
+After that, we can use it for **CRUD** operations on Graph resources. For instance, to update a user account:
 
 ```javascript
     async function updateUser(id, prop) {

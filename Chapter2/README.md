@@ -15,7 +15,7 @@
 
 ## Overview
 
-This sample demonstrates a how to [manage your B2C users with Microsoft Graph](https://docs.microsoft.com/azure/active-directory-b2c/microsoft-graph-get-started) via a Node.js console application (CLI) using [application permissions](https://docs.microsoft.com/azure/active-directory/develop/delegated-and-app-perms), with the help of [Microsoft Authentication Library of Node (Preview)](https://github.com/AzureAD/microsoft-authentication-library-for-js) (MSAL Node (Preview)) for authentication and [Microsoft Graph JavaScript Client Library](https://github.com/microsoftgraph/msgraph-sdk-javascript) for querying [Microsoft Graph](https://docs.microsoft.com/graph/overview).
+This sample demonstrates a how to [manage your B2C users with Microsoft Graph](https://docs.microsoft.com/azure/active-directory-b2c/microsoft-graph-get-started) via a Node.js console application (CLI) using [application permissions](https://docs.microsoft.com/azure/active-directory/develop/delegated-and-app-perms), with the help of [Microsoft Authentication Library of Node (Preview)](https://github.com/AzureAD/microsoft-authentication-library-for-js) (MSAL Node (Preview)) for authentication and [Microsoft Graph JavaScript SDK](https://github.com/microsoftgraph/msgraph-sdk-javascript) for querying [Microsoft Graph](https://docs.microsoft.com/graph/overview).
 
 ## Scenario
 
@@ -102,7 +102,7 @@ Locate the root folder of the sample in a terminal. Then:
     npm install -g
 ```
 
-This will install the CLI application globally so that it can be called from anywhere.
+This will install the CLI application globally so that it can be called from anywhere. See below for how to call it.
 
 ## Explore the sample
 
