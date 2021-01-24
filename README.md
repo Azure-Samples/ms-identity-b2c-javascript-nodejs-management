@@ -17,7 +17,7 @@ description: "This sample demonstrates how to manage Azure AD B2C users via Micr
 
 ## Overview
 
-This chapterwise tutorial demonstrates how to use the [Microsoft Graph API](https://docs.microsoft.com/graph/overview) to perform user account management operations  such as **create**, **read**, **update** and **delete** within an [Azure AD B2C](https://docs.microsoft.com/azure/active-directory-b2c/overview) tenant. The code samples in this tutorial back the [Manage Azure AD B2C user accounts with Microsoft Graph](https://docs.microsoft.com/azure/active-directory-b2c/manage-user-accounts-graph-api) article on [docs.microsoft.com](https://docs.microsoft.com/).
+This chapterwise tutorial demonstrates how to use the [Microsoft Graph API](https://docs.microsoft.com/graph/overview) to perform user account management operations such as **create**, **read**, **update** and **delete** within an [Azure AD B2C](https://docs.microsoft.com/azure/active-directory-b2c/overview) tenant. The code samples in this tutorial back the [Manage Azure AD B2C user accounts with Microsoft Graph](https://docs.microsoft.com/azure/active-directory-b2c/manage-user-accounts-graph-api) article on [docs.microsoft.com](https://docs.microsoft.com/).
 
 There are two modes of communication you can use when working with the **Microsoft Graph API** to manage resources in your **Azure AD B2C** tenant:
 
@@ -33,7 +33,7 @@ For more information, see: [Manage Azure AD B2C with Microsoft Graph](https://do
 |------------------------|-------------------------------------------------------------------|
 | [Chapter1](./Chapter1) | A JavaScript single-page application using delegated permissions. |
 | [Chapter2](./Chapter2) | A Node.js console application using application permissions.      |
-| [ReadmeFiles](./Chapter2)          | Contains diagrams and screenshots.                                |
+| [ReadmeFiles](./Chapter2) | Contains diagrams and screenshots.                             |
 
 ## Prerequisites
 

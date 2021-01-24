@@ -2,6 +2,7 @@
 const welcomeDiv = document.getElementById('WelcomeMessage');
 const cardDiv = document.getElementById('card-div');
 const formDiv = document.getElementById('form-div');
+const survey = document.getElementById('survey');
 
 const signInButton = document.getElementById('signIn');
 const getUsersButton = document.getElementById('getUsers');
@@ -12,7 +13,22 @@ const tabContent = document.getElementById('nav-tabContent');
 const tabList = document.getElementById('list-tab');
 
 getUsersButton.addEventListener('click', async() => {
-    updateUI(await getUsers());
+    formDiv.style.display = 'none';
+
+    let result;
+
+    try {
+        result = await getUsers();
+
+        if (result instanceof Error) {
+            throw Error;
+        } else {
+            updateUI(result);
+        } 
+    } catch (error) {
+        console.log(error);
+        alert(result);
+    }
 });
 
 addUsersButton.addEventListener('click', async() => {
@@ -23,6 +39,8 @@ addUsersButton.addEventListener('click', async() => {
 
 submitButton.addEventListener('click', async() => {
     formDiv.style.display = 'none';
+    tabContent.style.display = 'initial';
+    tabList.style.display = 'initial';
     
     /**
      * Following are the mandatory fields when creating a new user.
@@ -39,12 +57,26 @@ submitButton.addEventListener('click', async() => {
         },
     };
 
-    await createUser(newUser);
+    let result;
+
+    try {
+        result = await createUser(newUser);
+
+        if (result instanceof Error) {
+            throw Error;
+        } else {
+            alert('User added successfully. Use "Get Users" to see the newly added user.');
+        }
+    } catch (error) {
+        console.log(error);
+        alert(result);
+    }
 });
 
 function showWelcomeMessage(username) {
     // Reconfiguring DOM elements
     cardDiv.style.display = 'initial';
+    survey.style.display = 'initial';
     welcomeDiv.innerHTML = `Welcome ${username}`;
     signInButton.setAttribute('onclick', 'signOut();');
     signInButton.setAttribute('class', 'btn btn-success')
@@ -81,13 +113,20 @@ function updateUI(data) {
         const deleteButton = document.createElement('button');
         deleteButton.innerHTML = 'Delete';
         deleteButton.setAttribute('type', 'button');
-        deleteButton.setAttribute('id', 'deleteButton');
+        deleteButton.setAttribute('id', 'deleteButton' + (i+1));
         deleteButton.setAttribute('class', 'btn btn-primary');
 
         deleteButton.addEventListener('click', async() => {
+            document.getElementById('deleteButton' + (i+1)).remove();
             document.getElementById('userTable' + (i+1)).remove();
+            document.getElementById('list' + (i+1)).remove();
             document.getElementById('list' + (i+1) + 'list').remove();
-            await deleteUser(d.id);
+
+            try {
+                await deleteUser(d.id);   
+            } catch (error) {
+                alert(error);
+            }
         });
 
         contentItem.append(deleteButton);
@@ -112,5 +151,6 @@ function dataToTable(data, i) {
         rowNode.appendChild(dataNode2);
         tableNode.appendChild(rowNode);
     });
+
     return tableNode;
 }

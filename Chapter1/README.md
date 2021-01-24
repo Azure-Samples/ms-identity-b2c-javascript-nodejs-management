@@ -101,6 +101,7 @@ Locate the root folder of the sample in a terminal. Then:
 1. Open your browser and navigate to `http://localhost:3000`.
 1. Click on the **sign-in** button on the top right corner (make sure to sign-in with an administrator account).
 1. Click on the **Get Users** button retrieve the users in your tenant.
+1. Click on the **Add Users** button to add a new user to your tenant (see [here](https://docs.microsoft.com/graph/api/user-post-users?view=graph-rest-1.0&tabs=http) for requirements when adding a new user)
 
 ![Screenshot](./ReadmeFiles/ch1_screenshot.png)
 
