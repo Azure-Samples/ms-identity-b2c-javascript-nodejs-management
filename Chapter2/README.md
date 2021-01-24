@@ -15,14 +15,12 @@
 
 ## Overview
 
-This sample demonstrates a how to [manage your B2C users with Microsoft Graph](https://docs.microsoft.com/azure/active-directory-b2c/microsoft-graph-get-started) via a Node.js console application (CLI) using [application permissions](https://docs.microsoft.com/azure/active-directory/develop/delegated-and-app-perms), with the help of [Microsoft Authentication Library of Node (Preview)](https://github.com/AzureAD/microsoft-authentication-library-for-js) (MSAL Node (Preview)) for authentication and [Microsoft Graph JavaScript SDK](https://github.com/microsoftgraph/msgraph-sdk-javascript) for querying [Microsoft Graph](https://docs.microsoft.com/graph/overview).
+This sample demonstrates a how to [manage your B2C users with Microsoft Graph](https://docs.microsoft.com/azure/active-directory-b2c/microsoft-graph-get-started) via a Node.js console application (CLI) using [application permissions](https://docs.microsoft.com/azure/active-directory/develop/delegated-and-app-perms) and [client credentials](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow), with the help of [Microsoft Authentication Library of Node (Preview)](https://github.com/AzureAD/microsoft-authentication-library-for-js) (MSAL Node (Preview)) for authentication and [Microsoft Graph JavaScript SDK](https://github.com/microsoftgraph/msgraph-sdk-javascript) for querying [Microsoft Graph](https://docs.microsoft.com/graph/overview).
 
 ## Scenario
 
 1. The client **Node.js CLI** uses MSAL Node to sign-in and obtain a JWT access token from **Azure AD B2C**.
-2. The access token is used as a *bearer token* to authorize the user to call **Microsoft Graph**.
-
-![Overview](./ReadmeFiles/ch2_topology.png)
+2. The access token is used as a *bearer token* to authorize the application to call **Microsoft Graph** using its own identity.
 
 ## Contents
 

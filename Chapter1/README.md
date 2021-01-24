@@ -22,8 +22,6 @@ This sample demonstrates a how to [manage your B2C users with Microsoft Graph](h
 1. The client **JavaScript SPA** uses MSAL.js to sign-in and obtain a JWT access token from **Azure AD B2C**.
 2. The access token is used as a *bearer token* to authorize the user to call **Microsoft Graph**.
 
-![Overview](./ReadmeFiles/ch1_topology.png)
-
 ## Contents
 
 | File/folder       | Description                                                   |
@@ -102,8 +100,6 @@ Locate the root folder of the sample in a terminal. Then:
 1. Click on the **sign-in** button on the top right corner (make sure to sign-in with an administrator account).
 1. Click on the **Get Users** button retrieve the users in your tenant.
 1. Click on the **Add Users** button to add a new user to your tenant (see [here](https://docs.microsoft.com/graph/api/user-post-users?view=graph-rest-1.0&tabs=http) for requirements when adding a new user)
-
-![Screenshot](./ReadmeFiles/ch1_screenshot.png)
 
 > :information_source: Did the sample not work for you as expected? Then please reach out to us using the [GitHub Issues](../../../issues) page.
 
