@@ -65,10 +65,12 @@ function signOut() {
     // Choose which account to logout from by passing a username.
 
     const logoutRequest = {
-        account: pca.getAccountByHomeId(accountId)
+        account: pca.getAccountByHomeId(accountId),
+        postLogoutRedirectUri: msalConfig.auth.redirectUri,
+        mainWindowRedirectUri: msalConfig.auth.redirectUri
     };
 
-    pca.logout(logoutRequest);
+    pca.logoutPopup(logoutRequest);
 }
 
 async function getTokenPopup(request) {
@@ -101,7 +103,7 @@ async function getTokenPopup(request) {
                         console.log(error);
                     });
             } else {
-                console.log(error);   
+                console.log(error);
             }
         });
 }
@@ -110,21 +112,21 @@ selectAccount();
 
 class MyAuthenticationProvider {
 
-	/**
-	 * This method will get called before every request to the msgraph server
-	 * This should return a Promise that resolves to an accessToken (in case of success) or rejects with error (in case of failure)
-	 * Basically this method will contain the implementation for getting and refreshing accessTokens
-	 */
-    
-	async getAccessToken() {
-        return new Promise(async(resolve, reject) => {
+    /**
+     * This method will get called before every request to the msgraph server
+     * This should return a Promise that resolves to an accessToken (in case of success) or rejects with error (in case of failure)
+     * Basically this method will contain the implementation for getting and refreshing accessTokens
+     */
+
+    async getAccessToken() {
+        return new Promise(async (resolve, reject) => {
             const authResponse = await getTokenPopup(tokenRequest);
 
             if (authResponse.accessToken && authResponse.accessToken.length !== 0) {
-              resolve(authResponse.accessToken);
+                resolve(authResponse.accessToken);
             } else {
-              reject(Error("Error: cannot obtain access token."));
+                reject(Error("Error: cannot obtain access token."));
             }
-          });
+        });
     }
 }
